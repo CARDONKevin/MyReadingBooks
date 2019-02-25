@@ -1,5 +1,4 @@
 # MyReadingBooks
-************************************
 Creation of reading books by users
 ************************************
 ***Lundi 25 mars après-midi ( sur place )***
