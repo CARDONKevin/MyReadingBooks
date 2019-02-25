@@ -1,6 +1,7 @@
 # MyReadingBooks
+************************************
 Creation of reading books by users
-
+************************************
 ***Lundi 25 mars après-midi ( sur place )***
 ********************************************
 
@@ -11,6 +12,7 @@ Creation of reading books by users
 | Consultation des livres      |            |
 | Consultation d'un seul livre |            |
 
+***********************************
 ***Mardi 23 avril ( à distance )***
 ***********************************
 
@@ -22,6 +24,7 @@ Creation of reading books by users
 | Mise à jour de livre               |            |
 | Mise en place de la lecture vocale |            |
 
+*********************************
 ***Jeudi 23 Mai ( à distance )***
 *********************************
 
@@ -31,6 +34,7 @@ Creation of reading books by users
 | Système de notation           |            |
 | Pagination                    |            |
 
+***********************************
 ***Vendredi 21 Juin ( sur place)***
 ***********************************
 
