@@ -57,7 +57,7 @@
 | Classement livres/auteurs (Livre les mieux notés)    |            |
 
 
-Front avec Angular
-Back avec Spring Boot
-Intégration continue avec Travis (avec les tests)
-Déploiement sur Heroku
+Front avec Angular <br/>
+Back avec Spring Boot <br/>
+Intégration continue avec Travis (avec les tests) <br/>
+Déploiement sur Heroku <br/>
