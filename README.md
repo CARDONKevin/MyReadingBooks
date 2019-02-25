@@ -4,7 +4,7 @@
 ***Lundi 25 mars après-midi ( sur place )***
 ********************************************
 
-#### Sprint 1
+#### Sprint 1 (4pts)
 
 | Fonctionnalités                                      | Validation |
 |:----------------------------------------------------:|:----------:|
@@ -19,7 +19,7 @@
 ***Mardi 23 avril ( à distance )***
 ***********************************
 
-#### Sprint 2
+#### Sprint 2 (4pts)
 
 | Fonctionnalités                    | Validation |
 |:----------------------------------:|:----------:|
@@ -33,7 +33,7 @@
 ***Jeudi 23 Mai ( à distance )***
 *********************************
 
-#### Sprint 3
+#### Sprint 3 (4pts)
 
 | Fonctionnalités                     | Validation |
 |:-----------------------------------:|:----------:|
@@ -47,7 +47,7 @@
 ***Vendredi 21 Juin ( sur place )***
 ***********************************
 
-#### Sprint 4
+#### Sprint 4 (3pts)
 
 | Fonctionnalités                                      | Validation |
 |:----------------------------------------------------:|:----------:|
@@ -57,7 +57,13 @@
 | Classement livres/auteurs (Livre les mieux notés)    |            |
 
 
-Front avec Angular <br/>
-Back avec Spring Boot <br/>
-Intégration continue avec Travis (avec les tests) <br/>
-Déploiement sur Heroku <br/>
+***********************************
+***Outils***
+
+##### Front avec Angular 
+<br/><br/>
+##### Back avec Spring Boot 
+<br/><br/>
+##### Intégration continue avec Travis (avec les tests) 
+<br/><br/>
+##### Déploiement sur Heroku
