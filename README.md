@@ -6,7 +6,7 @@ Creation of reading books by users
 ********************************************
 
 | Fonctionnalités              | Validation |
-| -----------------------------|------------|
+|:----------------------------:|:----------:|
 | Connexion                    |            |
 | Déconnexion                  |            |
 | Consultation des livres      |            |
@@ -17,7 +17,7 @@ Creation of reading books by users
 ***********************************
 
 | Fonctionnalités                    | Validation |
-|------------------------------------|------------|
+|:----------------------------------:|:----------:|
 | Espace User                        |            | 
 | Creation de livre                  |            |
 | Supression de livre                |            |
@@ -29,7 +29,7 @@ Creation of reading books by users
 *********************************
 
 | Fonctionnalités               | Validation |
-|-------------------------------|------------|
+|:-----------------------------:|:----------:|
 | Mise en place de catégories   |            |
 | Système de notation           |            |
 | Pagination                    |            |
@@ -39,7 +39,7 @@ Creation of reading books by users
 ***********************************
 
 | Fonctionnalités                                      | Validation |
-|------------------------------------------------------|------------|
+|:----------------------------------------------------:|:----------:|
 | Système de commentaire                               |            |
 | Recherche avec autocompletion                        |            |
 | Tri sur la recherche (par date, aplhanumérique)      |            |
