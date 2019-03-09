@@ -1,0 +1,25 @@
+sudo: false
+language: node_js
+node_js:
+- "9"
+branches:
+  only:
+  - master
+  - dev
+install:
+  - npm install
+cache:
+  directories:
+  - "/node_modules"
+script:
+  - ng lint
+  - npm run test-chromeheadless
+  - ng build
+deploy:
+  provider: heroku
+  api_key:
+    secure: "ED2le+dwx8IsKViXz8Rk2UfJhCM0ceqH+U3uxZjMEg4DT8bdADRurex6a+OnaWIktTVhYR9Y7TfZeRmsMhNm0pbVuuCYl8x/obAWMhfHnKNYFI6SeloYpuO0Cv2TBZw11b9ZTytkkd0TKrqVdHkUduNjtp4E4r/EpepaJ7PQSsVDugtHNS76N9sWM89sYxYkKst0no1E2qctveTYaIBIHHEV0/Hi3ISa/P/epz7hMKOuQ3e9z7OYRxTYztsTroULyLx+o2gMj5tirl7M3ThiY8pQnURY3eZZ9MPMqL742GIlm3nGUcoxUJvZamgJK7sRTRAu7Dgk7EOgeTCnanSvINvB1M5ESpTlLI5a2lx7jNVTbdXhAD0NBCSRVVqnAgttk4Cm5XAnJW1GMEJRBr+vUC8qoQSjkhipO271jJyBxUPJeDO7Xvn+ioGXv/maJVHEuoDgt5reuzXRS2vqvLhKzAbT1rQIpkbgmCs+s9tzvZxeZjizSEcwPq3zZRvWi6DmybnYvBEt+PA9oScl7gb4VbCHtRtEqTvRB2ygSSLf/OWagl94RZ5FlhCq3gdXvaMqi/Tbu1Qtnx6bezyF1Q316YgR1h8htNmPnDtCkuyBTEzJG2ayU/JstRMrHBlQiBbkIRTzDcbl2izxKQ4ya5mTo3M7v09WPPyb0Ctv0FvqJpI="
+  app: my-reading-books
+  on:
+    repo: CARDONKevin/MyReadingBooks
+    branch: dev
