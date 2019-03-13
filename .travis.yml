@@ -1,23 +1,22 @@
 sudo: false
 language: node_js
 node_js:
-- "8"
+- '8'
 branches:
   only:
   - master
   - dev
 before_script:
-  - npm install -g @angular/cli
-  - npm install
+- npm install -g @angular/cli
+- npm install
 script:
-  - ng lint
-  - npm run test-chromeheadless
-  - npm run postinstall
+- ng lint
+- npm run test-chromeheadless
+- npm run postinstall
 deploy:
   provider: heroku
   api_key:
-    secure: "ED2le+dwx8IsKViXz8Rk2UfJhCM0ceqH+U3uxZjMEg4DT8bdADRurex6a+OnaWIktTVhYR9Y7TfZeRmsMhNm0pbVuuCYl8x/obAWMhfHnKNYFI6SeloYpuO0Cv2TBZw11b9ZTytkkd0TKrqVdHkUduNjtp4E4r/EpepaJ7PQSsVDugtHNS76N9sWM89sYxYkKst0no1E2qctveTYaIBIHHEV0/Hi3ISa/P/epz7hMKOuQ3e9z7OYRxTYztsTroULyLx+o2gMj5tirl7M3ThiY8pQnURY3eZZ9MPMqL742GIlm3nGUcoxUJvZamgJK7sRTRAu7Dgk7EOgeTCnanSvINvB1M5ESpTlLI5a2lx7jNVTbdXhAD0NBCSRVVqnAgttk4Cm5XAnJW1GMEJRBr+vUC8qoQSjkhipO271jJyBxUPJeDO7Xvn+ioGXv/maJVHEuoDgt5reuzXRS2vqvLhKzAbT1rQIpkbgmCs+s9tzvZxeZjizSEcwPq3zZRvWi6DmybnYvBEt+PA9oScl7gb4VbCHtRtEqTvRB2ygSSLf/OWagl94RZ5FlhCq3gdXvaMqi/Tbu1Qtnx6bezyF1Q316YgR1h8htNmPnDtCkuyBTEzJG2ayU/JstRMrHBlQiBbkIRTzDcbl2izxKQ4ya5mTo3M7v09WPPyb0Ctv0FvqJpI="
-  app: my-reading-books
-  on:
-    repo: CARDONKevin/MyReadingBooks
-    branch: master
+    secure: HLxKBPmb/DAcMpuLDTbR5UmYC2tnbf0X3q/WG5GSv8vqjPvRK3XE0akzENpMowvHCfJvcYzEqjL2XW4lNKv6MRZo2mGamfKdljyUvtce3A1rkj/8XraV4cEqH80kTOgzWyQwDLpRi6t8O+EeTr6PpS9VCJ8DAKyyZGlntX4Bc4BRmanohKnOfk86fVAEZ95qqVL/MF7amtyF9VqoptPLp6oDlw/FyWlfEukpRjZ0fMnvktjOYOM+yv4yYt8oK8Z7RJs2nQR63timbCNaZLJPnHHJBeMtMTMTcpJotkT0EiQJq00ru78d6gOs2VzvOiWHT6GHviIYu32tB3rVvrRLzePKfMp4Ia3YRdG32hxrIyp+7GbU28ysPf+xVnWuUeuquU4pegwvueB58K7Hgv0trEXlXSfn8rRd+YdwQCiy0Zu2DkfsmxXKxsfW0awxBFTFU3f5rW2Pcsi9PupJYQ1gHnahJ8nq4wO4TO4OCnzrI2W4TBavbOu4wcuOEY/WaAK0XTAjec1UFzBNOgNPdjDgwbxBxVj3IZQ5aFbGsmapIISO5T8zOmYKSnJll6E692WknFuc+YkAfN8N+AJCDGkdJLerYiV+jlCdn0cZgw+lqcOQSlIfnubKNIu9puz/dfOxwowTxNiu3gyuIE+gGmszT22ODP0TrGeJcsRxpeHTpl8=
+  app:
+    master: my-reading-books
+    dev: my-reading-books-dev
