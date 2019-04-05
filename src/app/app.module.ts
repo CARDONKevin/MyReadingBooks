@@ -9,11 +9,27 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatPaginatorModule, MatRadioModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import {FacebookLoginProvider} from 'angularx-social-login';
+import { AuthentificationComponent } from './control/authentification/authentification.component';
+
+
+const config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('370545117128079')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    AllListingComponent
+    AllListingComponent,
+    AuthentificationComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +38,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatPaginatorModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-    MatRadioModule
+    MatRadioModule,
+    SocialLoginModule
   ],
-  providers: [MangaService],
+  providers: [MangaService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
