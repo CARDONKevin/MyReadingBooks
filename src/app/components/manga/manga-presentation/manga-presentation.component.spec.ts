@@ -5,10 +5,10 @@ import {MangaInformationDto} from '../../../models/mangas/dto/MangaInformationDt
 import {of} from 'rxjs';
 import {MangaService} from '../../../services/manga.service';
 import {MangaMapper} from '../../../mappers/manga-mapper';
-import {NO_ERRORS_SCHEMA} from "@angular/core";
-import {NgxPaginationModule} from "ngx-pagination";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RouterTestingModule} from "@angular/router/testing";
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 
 let mangaService: MangaService;
 let mapper: MangaMapper;

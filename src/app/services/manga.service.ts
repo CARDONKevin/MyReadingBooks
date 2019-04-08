@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {MangaEdenApiResponseDto} from '../models/mangas/dto/MangaEdenApiResponseDto';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {MangaPresentationDto} from '../models/mangas/dto/MangaPresentationDto';
 import {MangaChapterDto} from '../models/mangas/dto/MangaChapterDto';
-import {MangaInformationDto} from "../models/mangas/dto/MangaInformationDto";
+import {MangaInformationDto} from '../models/mangas/dto/MangaInformationDto';
 
 @Injectable({
   providedIn: 'root'
