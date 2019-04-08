@@ -1,0 +1,15 @@
+<ng-container *ngIf="found">
+
+  <p>
+    manga-presentation works! <br/>
+    {{mangaInfo.title}}<br/>
+    {{mangaInfo.chapters_len}}
+
+  </p>
+  <li *ngFor="let chapter of mangaInfo.chapters">
+    <a routerLink="/chapter/{{chapter[3]}}">{{ chapter[2] }} </a>
+  </li>
+</ng-container>
+
+<button (click)="goBack()">Retour</button>
+

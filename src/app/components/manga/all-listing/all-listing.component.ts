@@ -72,7 +72,7 @@ export class AllListingComponent implements OnInit, OnDestroy {
 
   pageChange(newPage: number) {
     if (this.sort === 'none') {
-      this.router.navigate([''], {queryParams: {page: newPage}});
+      this.router.navigate(['mangas'], {queryParams: {page: newPage}});
       const resultPage = newPage - 1;
       this.ConsultationAllMangas(resultPage);
     } else {
@@ -152,5 +152,9 @@ export class AllListingComponent implements OnInit, OnDestroy {
           }
         });
     }
+  }
+
+  gotoManga(manga: any): void {
+    this.router.navigate([`manga/` + manga.id]);
   }
 }

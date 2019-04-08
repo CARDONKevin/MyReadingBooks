@@ -12,6 +12,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import {FacebookLoginProvider} from 'angularx-social-login';
 import { AuthentificationComponent } from './control/authentification/authentification.component';
+import { MangaPresentationComponent } from './components/manga/manga-presentation/manga-presentation.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ReadChapterComponent } from './components/manga/read-chapter/read-chapter.component';
 
 
 const config = new AuthServiceConfig([
@@ -29,7 +32,10 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     AllListingComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
+    MangaPresentationComponent,
+    SidebarComponent,
+    ReadChapterComponent
   ],
   imports: [
     BrowserModule,
