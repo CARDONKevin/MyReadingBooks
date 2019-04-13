@@ -10,6 +10,18 @@
   </mat-radio-group>
 </div>
 
+<div *ngIf="isDisplayedCategories">
+<mat-form-field>
+  <mat-label>Select an option</mat-label>
+  <mat-select (selectionChange)="onSelectedCategorie($event)">
+    <mat-option value=' Aucune'> Aucune</mat-option>
+    <ng-container *ngFor="let categ of allCategorie">
+      <mat-option value="{{categ.value}}">{{categ.viewValue}}</mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
+</div>
+
 <span class="component">
   <ng-container *ngFor="let manga of mangas">
     <ul class="align">
@@ -47,9 +59,17 @@
   </ng-container>
 </span>
 
-<div class="list">
+<div class="list" *ngIf="selectedCategorie === ' Aucune'">
   <ul>
     <li *ngFor="let item of collection | paginate: config"></li>
   </ul>
   <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
 </div>
+
+<div class="list" *ngIf="selectedCategorie !== ' Aucune'">
+  <ul>
+    <li *ngFor="let item of collectionCategorized | paginate: config"></li>
+  </ul>
+  <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+</div>
+

@@ -145,4 +145,64 @@ describe('AllListingComponent', () => {
     expect(component.allMangas[0].title).toBeLessThan(component.allMangas[1].title);
     expect(mangaService.getMangas).toHaveBeenCalled();
   });
+
+  it('sort categorized manga not sorted', () => {
+    component.sort = 'none';
+    component.selectedCategorie = 'Tragedy';
+    spyOn(mangaService, 'getMangas').and.returnValue(of(mockedResponse));
+
+    component.pageChange(1);
+    expect(component.mangas.length).toEqual(mockedResponse.manga.length);
+    expect(component.mangas[0].title).toEqual(mockedResponse.manga[0].t);
+    expect(component.mangas[1].title).toEqual(mockedResponse.manga[1].t);
+    expect(mangaService.getMangas).toHaveBeenCalled();
+  });
+
+  it('sort categorized manga sorted by date old->recent', () => {
+    component.sort = 'date';
+    component.selectedCategorie = 'Tragedy';
+    spyOn(mangaService, 'getMangas').and.returnValue(of(mockedResponse));
+
+    component.pageChange(1);
+    expect(component.mangas.length).toEqual(mockedResponse.manga.length);
+    expect(component.mangas[1].title).toEqual(mockedResponse.manga[0].t);
+    expect(component.mangas[0].title).toEqual(mockedResponse.manga[1].t);
+    expect(mangaService.getMangas).toHaveBeenCalled();
+  });
+
+  it('sort categorized manga sorted by reversed date recent->old', () => {
+    component.sort = 'reversedDate';
+    component.selectedCategorie = 'Tragedy';
+    spyOn(mangaService, 'getMangas').and.returnValue(of(mockedResponse));
+
+    component.pageChange(1);
+    expect(component.mangas.length).toEqual(mockedResponse.manga.length);
+    expect(component.mangas[0].title).toEqual(mockedResponse.manga[0].t);
+    expect(component.mangas[1].title).toEqual(mockedResponse.manga[1].t);
+    expect(mangaService.getMangas).toHaveBeenCalled();
+  });
+
+  it('sort categorized manga sorted by alphanumeric', () => {
+    component.sort = 'alpha';
+    component.selectedCategorie = 'Tragedy';
+    spyOn(mangaService, 'getMangas').and.returnValue(of(mockedResponse));
+
+    component.pageChange(1);
+    expect(component.mangas.length).toEqual(mockedResponse.manga.length);
+    expect(component.mangas[1].title).toEqual(mockedResponse.manga[0].t);
+    expect(component.mangas[0].title).toEqual(mockedResponse.manga[1].t);
+    expect(mangaService.getMangas).toHaveBeenCalled();
+  });
+
+  it('sort categorized manga sorted by reversed alphanumeric', () => {
+    component.sort = 'reversedAlpha';
+    component.selectedCategorie = 'Tragedy';
+    spyOn(mangaService, 'getMangas').and.returnValue(of(mockedResponse));
+
+    component.pageChange(1);
+    expect(component.mangas.length).toEqual(mockedResponse.manga.length);
+    expect(component.mangas[0].title).toEqual(mockedResponse.manga[0].t);
+    expect(component.mangas[1].title).toEqual(mockedResponse.manga[1].t);
+    expect(mangaService.getMangas).toHaveBeenCalled();
+  });
 });
