@@ -6,7 +6,13 @@ import { AppComponent } from './app.component';
 import { AllListingComponent } from './components/manga/all-listing/all-listing.component';
 import {MangaService} from './services/manga.service';
 import {HttpClientModule} from '@angular/common/http';
-import {MatPaginatorModule, MatRadioModule, MatSelectModule} from '@angular/material';
+import {
+  MatButtonModule, MatFormFieldModule, MatInputModule,
+  MatPaginatorModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatStepperModule, MatTableModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
@@ -16,6 +22,11 @@ import { MangaPresentationComponent } from './components/manga/manga-presentatio
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ReadChapterComponent } from './components/manga/read-chapter/read-chapter.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BookListingComponent } from './components/book/book-listing/book-listing.component';
+import { BookChaptersComponent } from './components/book/book-chapters/book-chapters.component';
+import { CreateBookComponent } from './components/book/create-book/create-book.component';
+import { CreateBookChapterComponent } from './components/book/create-book-chapter/create-book-chapter.component';
+import { StudioCreationComponent } from './components/studio-creation/studio-creation.component';
 
 
 const config = new AuthServiceConfig([
@@ -36,7 +47,12 @@ export function provideConfig() {
     AuthentificationComponent,
     MangaPresentationComponent,
     SidebarComponent,
-    ReadChapterComponent
+    ReadChapterComponent,
+    BookListingComponent,
+    BookChaptersComponent,
+    CreateBookComponent,
+    CreateBookChapterComponent,
+    StudioCreationComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +66,12 @@ export function provideConfig() {
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule
   ],
   providers: [MangaService,
     {

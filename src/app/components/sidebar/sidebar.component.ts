@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  @Input() user: any;
 
+  constructor(private authService: AuthService) {
+  }
   ngOnInit() {
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 
 }
