@@ -1,11 +1,11 @@
 import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AuthService, SocialUser} from "angularx-social-login";
-import {BookService} from "../../services/book.service";
-import {takeUntil} from "rxjs/operators";
-import {of, Subject} from "rxjs";
-import {BookPresentation} from "../../models/book/BookPresentation";
-import {BookChapters} from "../../models/book/BookChapters";
-import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService, SocialUser} from 'angularx-social-login';
+import {BookService} from '../../services/book.service';
+import {takeUntil} from 'rxjs/operators';
+import {of, Subject} from 'rxjs';
+import {BookPresentation} from '../../models/book/BookPresentation';
+import {BookChapters} from '../../models/book/BookChapters';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-studio-creation',

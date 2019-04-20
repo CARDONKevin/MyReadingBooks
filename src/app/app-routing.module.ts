@@ -4,9 +4,9 @@ import {MangaPresentationComponent} from './components/manga/manga-presentation/
 import {AuthentificationComponent} from './control/authentification/authentification.component';
 import {AllListingComponent} from './components/manga/all-listing/all-listing.component';
 import {ReadChapterComponent} from './components/manga/read-chapter/read-chapter.component';
-import {BookListingComponent} from "./components/book/book-listing/book-listing.component";
-import {BookChaptersComponent} from "./components/book/book-chapters/book-chapters.component";
-import {StudioCreationComponent} from "./components/studio-creation/studio-creation.component";
+import {BookListingComponent} from './components/book/book-listing/book-listing.component';
+import {BookChaptersComponent} from './components/book/book-chapters/book-chapters.component';
+import {StudioCreationComponent} from './components/studio-creation/studio-creation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {BookService} from '../../../services/book.service';
 import {takeUntil} from 'rxjs/operators';
-import {BookPresentation} from "../../../models/book/BookPresentation";
+import {BookPresentation} from '../../../models/book/BookPresentation';
 
 @Component({
   selector: 'app-book-listing',

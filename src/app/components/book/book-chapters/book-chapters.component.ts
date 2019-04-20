@@ -4,7 +4,7 @@ import {BookPresentation} from '../../../models/book/BookPresentation';
 import {BookService} from '../../../services/book.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BookChapters} from '../../../models/book/BookChapters';
-import {takeUntil} from "rxjs/operators";
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-book-chapters',
