@@ -7,16 +7,17 @@ import {ReadChapterComponent} from './components/manga/read-chapter/read-chapter
 import {BookListingComponent} from './components/book/book-listing/book-listing.component';
 import {BookChaptersComponent} from './components/book/book-chapters/book-chapters.component';
 import {StudioCreationComponent} from './components/studio-creation/studio-creation.component';
+import {AuthenticationGuard} from './guards/authentication.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: AuthentificationComponent },
-  { path: 'mangas', component: AllListingComponent },
-  { path: 'manga/:id', component: MangaPresentationComponent },
-  { path: 'book/:id', component: BookChaptersComponent },
-  { path: 'books', component: BookListingComponent },
-  { path: 'chapter/:id', component: ReadChapterComponent },
-  { path: 'creation-studio', component: StudioCreationComponent }
+  { path: 'mangas', canActivate: [ AuthenticationGuard ], component: AllListingComponent },
+  { path: 'manga/:id', canActivate: [ AuthenticationGuard ], component: MangaPresentationComponent },
+  { path: 'book/:id', canActivate: [ AuthenticationGuard ], component: BookChaptersComponent },
+  { path: 'books', canActivate: [ AuthenticationGuard ], component: BookListingComponent },
+  { path: 'chapter/:id', canActivate: [ AuthenticationGuard ], component: ReadChapterComponent },
+  { path: 'creation-studio', canActivate: [ AuthenticationGuard ], component: StudioCreationComponent }
 
 ];
 
