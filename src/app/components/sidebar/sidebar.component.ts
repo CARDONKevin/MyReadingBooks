@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+    localStorage.clear();
   }
 
 }

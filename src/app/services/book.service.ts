@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {BookPresentation} from '../models/book/BookPresentation';
@@ -19,20 +19,21 @@ export class BookService {
         'accept-language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT',
-
+        Authorization: 'Bearer ' + this.getTokenValid()
       }
     )
   };
 
   readonly jsonApplicationHeader = {
     headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.getTokenValid()
       }
     )
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getBooks(): Observable<BookPresentation[]> {
     return this.http.get<any>(this.URL_BOOKS, this.httpOptions);
@@ -51,13 +52,17 @@ export class BookService {
   }
 
   public postBook(book: BookPresentation): Observable<BookPresentation> {
-    return this.http.post<any>(this.URL_BOOKS, book);
+    return this.http.post<any>(this.URL_BOOKS, book, this.jsonApplicationHeader);
   }
 
   public postChapter(bookChapter: any): Observable<BookChapters> {
     const result = this.http.post<any>(this.URL_CHAPTER, bookChapter, this.jsonApplicationHeader);
     result.subscribe();
     return result;
+  }
+
+  public getTokenValid(): string {
+    return localStorage.getItem('tokenJwt');
   }
 
 }
