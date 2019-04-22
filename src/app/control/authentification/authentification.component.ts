@@ -47,7 +47,9 @@ export class AuthentificationComponent implements OnInit {
           'accept-language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT',
-          Authorization: ' Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrZXYiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9XSwiaWF0IjoxNTU1OTI2OTg1LCJleHAiOjE1NTU5MzQxODV9.IVnb2FvENXWjZQ1u4O_DQis6Wda11ZIqJ1QgYQfrf0U',
+          Authorization: ' Bearer eyJhbGciO' +
+            'iJIUzI1NiJ9.eyJzdWIiOiJrZXYiLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0NMSUVOVCJ9XSwi' +
+            'aWF0IjoxNTU1OTI2OTg1LCJleHAiOjE1NTU5MzQxODV9.IVnb2FvENXWjZQ1u4O_DQis6Wda11ZIqJ1QgYQfrf0U',
           responseType: 'text'
 
         }
