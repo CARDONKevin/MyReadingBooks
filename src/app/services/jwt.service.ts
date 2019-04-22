@@ -10,7 +10,7 @@ export class JwtService {
   constructor(private http: HttpClient) {
   }
 
-  readonly URL_JWT_USER = 'https://my-reading-books-back-dev.herokuapp.com/signin/';
+  readonly URL_JWT_USER = 'https://my-reading-books-back.herokuapp.com/signin/';
 
   readonly httpOptions = {
     headers: new HttpHeaders({

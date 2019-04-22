@@ -8,10 +8,10 @@ import {BookChapters} from '../models/book/BookChapters';
   providedIn: 'root'
 })
 export class BookService {
-  readonly URL_BOOKS = 'https://my-reading-books-back-dev.herokuapp.com/book/';
-  readonly URL_BOOKS_AUTHOR = 'https://my-reading-books-back-dev.herokuapp.com/book/author/';
-  readonly URL_BOOK_CHAPTER = 'https://my-reading-books-back-dev.herokuapp.com/chapter/book/';
-  readonly URL_CHAPTER = 'https://my-reading-books-back-dev.herokuapp.com/chapter/';
+  readonly URL_BOOKS = 'https://my-reading-books-back.herokuapp.com/book/';
+  readonly URL_BOOKS_AUTHOR = 'https://my-reading-books-back.herokuapp.com/book/author/';
+  readonly URL_BOOK_CHAPTER = 'https://my-reading-books-back.herokuapp.com/chapter/book/';
+  readonly URL_CHAPTER = 'https://my-reading-books-back.herokuapp.com/chapter/';
 
   readonly httpOptions = {
     headers: new HttpHeaders({
