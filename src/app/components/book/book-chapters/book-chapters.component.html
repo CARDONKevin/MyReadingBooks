@@ -1,0 +1,10 @@
+<p *ngIf="book">
+  titre du livre : {{book.title}}
+</p>
+
+<ng-container *ngFor="let chapter of chapters">
+  <div>
+    <p> titre du chapitre : {{chapter.title}}</p>
+    <p> contenu : <br/>{{chapter.content}}</p>
+  </div>
+</ng-container>

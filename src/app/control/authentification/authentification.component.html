@@ -1,7 +1,6 @@
 <div class="jumbotron bg-transparent text-center">
   <div *ngIf="!user" class="card text-center">
     <div class="card-block">
-      <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
       <div id="login-box">
         <div class="right">
           <span class="loginwith">Sign in with<br />social network</span>
@@ -15,18 +14,18 @@
     </div>
   </div>
   <div *ngIf="user" class="card text-center">
-    <div class="card-block"></div>
-    <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
-    <div class="card-block">
-      <h4 class="card-title">{{ user.name }}</h4>
-      <p class="card-text">{{ user.email }}</p>
-    </div>
-    <div class="card-block">
-      <button class="btn btn-danger" (click)="signOut()">Sign out</button>
-    </div>
+    <app-sidebar></app-sidebar>
+    <p style="width: 500px; margin: auto">
+      For navigate, please use the sidenav in the grey zone (left of screen). Menu appear hidden because lack icons
 
-    <app-all-listing></app-all-listing>
+    </p>
+    <br/>
+    <br/>
+    <p style="width: 500px; margin: auto">
+      Pour naviguer, utilisez le menu gauche caché dans la zone grise qui apparait caché car il manque les icones.
+      Survolé la zone grise pour l'instant pour utiliser le menu les liens apparaitront ensuite
+    </p>
+
   </div>
 </div>
-
 

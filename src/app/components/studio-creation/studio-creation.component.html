@@ -1,0 +1,92 @@
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>List of your books</ng-template>
+
+
+    <ng-container *ngIf="visionChapters">
+      <ng-template matStepLabel>Add A Chapter</ng-template>
+      <ng-container *ngIf="allChaptersOfBook">
+        <table mat-table [dataSource]="allChaptersOfBook" class="mat-elevation-z8">
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef> Created </th>
+            <td mat-cell *matCellDef="let element"> {{element.creationDate }} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </ng-container>
+
+      <button (click)="stopVisionChapters()">Close chapters list</button>
+    </ng-container>
+
+
+    <span class="component">
+  <ng-container *ngFor="let book of allBookUser">
+    <ul class="align">
+      <li>
+        <figure class='book'>
+          <!-- Front -->
+          <ul class='hardcover_front'>
+            <li>
+              <img src="{{book.picture}}" alt="" width="100%" height="100%">
+            </li>
+            <li></li>
+          </ul>
+          <!-- Pages -->
+          <ul class='page'>
+            <li> <span class="title">{{book.title}} </span> </li>
+            <li>
+              <button class="btn" (click)="gotoBook(book)">Consulter </button>
+              <button style="margin-top: 10px" (click)="gotoCreationChapter(book)">Add Chapter </button>
+              <button style="margin-top: 10px" (click)="getChapters(book)">See List chapters </button>
+
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <!-- Back -->
+          <ul class='hardcover_back'>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class='book_spine'>
+            <li></li>
+            <li></li>
+          </ul>
+        </figure>
+      </li>
+    </ul>
+  </ng-container>
+</span>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Add A Book</ng-template>
+    <app-create-book (refreshEvent)="refresh()"></app-create-book>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Add A Chapter</ng-template>
+    <ng-container *ngIf="!activatedBook"> Click on a book button to add chapter a form will be appeared here
+      <button (click)="returnToBookList()">Return book list</button>
+
+    </ng-container>
+
+    <ng-container *ngIf="activatedBook">
+
+      <app-create-book-chapter [bookId]="activatedBook"
+                               (terminateChapterCreation)="terminateChapterEdition($event)">
+
+      </app-create-book-chapter>
+    </ng-container>
+  </mat-step>
+</mat-horizontal-stepper>

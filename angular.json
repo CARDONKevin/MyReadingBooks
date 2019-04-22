@@ -5,6 +5,7 @@
   "projects": {
     "MyReadingBooksProject": {
       "root": "",
+
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
