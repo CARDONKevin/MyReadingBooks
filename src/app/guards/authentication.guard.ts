@@ -21,8 +21,9 @@ export class AuthenticationGuard implements CanActivate {
       this.loggedIn = (user != null);
     });
     const token = localStorage.getItem('tokenJwt');
-    if (this.getDecodedAccessToken(token).auth[0].authority === 'ROLE_CLIENT') {
-      return true;
+    if (this.getDecodedAccessToken(token) !== null &&
+      this.getDecodedAccessToken(token).auth[0].authority === 'ROLE_CLIENT') {
+        return true;
     } else {
       this.router.navigate(['home']);
       if (this.loggedIn === true) {
