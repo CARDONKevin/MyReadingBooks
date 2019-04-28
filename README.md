@@ -35,7 +35,8 @@
 | Création de livre                  |            |
 | Mise en place de catégories        |            |
 
-Vidéo: https://drive.google.com/open?id=1eEnqahX0xNB4mT5jc1h4a0yckASk7z_J
+Vidéo (Contenu du Sprint 2): https://drive.google.com/open?id=1eEnqahX0xNB4mT5jc1h4a0yckASk7z_J
+Vidéo 2 (Complément sur la consultation d'un manga omise dans la première vidéo): https://drive.google.com/open?id=1tRphPDgDWmHFRONsaXGq2cwPbhUSGcrw
 *********************************
 ***Jeudi 23 Mai ( à distance )***
 *********************************
