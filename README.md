@@ -35,7 +35,7 @@
 | Création de livre                  |            |
 | Mise en place de catégories        |            |
 
-
+Vidéo: https://drive.google.com/open?id=1eEnqahX0xNB4mT5jc1h4a0yckASk7z_J
 *********************************
 ***Jeudi 23 Mai ( à distance )***
 *********************************
