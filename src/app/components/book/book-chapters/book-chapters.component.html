@@ -1,10 +1,29 @@
-<p *ngIf="book">
-  titre du livre : {{book.title}}
-</p>
+<div class="grid-container">
+  <div class="grid-item">
 
-<ng-container *ngFor="let chapter of chapters">
-  <div>
-    <p> titre du chapitre : {{chapter.title}}</p>
-    <p> contenu : <br/>{{chapter.content}}</p>
+    <p *ngIf="book" (click)="definitionOfWordSelected()">
+      titre du livre : {{book.title}}  
+    </p>
+
+    <ng-container *ngFor="let chapter of chapters">
+      <div (click)="definitionOfWordSelected()">
+        <p> titre du chapitre : {{chapter.title}}  </p>
+        <p> contenu : <br/>{{chapter.content}}  </p>
+      </div>
+    </ng-container>
   </div>
-</ng-container>
+
+  <div class="grid-item">
+    <p *ngIf="!definitionWordApi">Click on a word in book to know its definition /<br/>
+      Clique sur un mot dans le livre pour connaître sa définition
+    </p>
+    <ng-container *ngIf="definitionWordApi">
+      <div> Définition de <strong>{{definitionWordApi.title}}</strong></div>
+      <div [innerHTML]="definitionWordApi.extract"></div>
+      <div *ngIf="!definitionWordApi.extract || definitionWordApi.extract === ''">
+        <br/>
+        Aucune définition trouvée pour << {{definitionWordApi.title}} >>
+      </div>
+    </ng-container>
+  </div>
+</div>
