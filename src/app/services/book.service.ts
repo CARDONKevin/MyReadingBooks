@@ -13,7 +13,9 @@ export class BookService {
   readonly URL_BOOK_CHAPTER = 'https://my-reading-books-back.herokuapp.com/chapter/book/';
   readonly URL_CHAPTER = 'https://my-reading-books-back.herokuapp.com/chapter/';
   readonly URL_DELETE_BOOK = 'https://my-reading-books-back-dev.herokuapp.com/book/delete/';
+  readonly URL_EDIT_BOOK = 'https://my-reading-books-back-dev.herokuapp.com/book/update/';
   readonly URL_DELETE_CHAPTER = 'https://my-reading-books-back-dev.herokuapp.com/chapter/delete/';
+  readonly URL_EDIT_CHAPTER = 'https://my-reading-books-back-dev.herokuapp.com/chapter/update/';
 
   readonly httpOptions = {
     headers: new HttpHeaders({
@@ -69,6 +71,14 @@ export class BookService {
 
   public deleteChapterBook(id: number): Observable<any> {
     return this.http.delete<any>(this.URL_DELETE_CHAPTER + id, this.jsonApplicationHeader);
+  }
+
+  public editBook(book: BookPresentation, id: number): Observable<BookPresentation> {
+    return this.http.patch<any>(this.URL_EDIT_BOOK + id, book, this.jsonApplicationHeader);
+  }
+
+  public editBookChapter(chapter: BookChapters, id: number): Observable<BookChapters> {
+    return this.http.patch<any>(this.URL_EDIT_CHAPTER + id, chapter, this.jsonApplicationHeader);
   }
 
   public getTokenValid(): string {

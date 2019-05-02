@@ -20,6 +20,9 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
   activatedBook: BookPresentation;
   isCreatedChapter = false;
   visionChapters = false;
+  editABook: BookPresentation;
+  editAChapter: BookChapters;
+  editAChapterBookSelected: BookPresentation;
   allChaptersOfBook: BookChapters[];
   mappedBook = new Map<number, BookPresentation>();
   private ngUnsubscribe = new Subject<void>();
@@ -47,7 +50,7 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
   }
 
   refresh(): void {
-    this.stepper.selectedIndex = this.stepper.selectedIndex - 1;
+    this.stepper.selectedIndex = 0;
     this.getAllBooksOfUser();
   }
 
@@ -81,12 +84,17 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
   }
 
   terminateChapterEdition(evt: any): void {
-    this.stepper.selectedIndex = this.stepper.selectedIndex - 2;
+    this.stepper.selectedIndex = 0;
     this.activatedBook = null;
     of().pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
         this.isCreatedChapter = false;
       });
+    this.getChapters(evt);
+  }
+
+  terminateChapterEditionUpdate(evt: any): void {
+    this.stepper.selectedIndex = 0;
     this.getChapters(evt);
   }
 
@@ -118,6 +126,17 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
           this.getChapters(this.mappedBook.get(chapter.bookId));
         });
     }
+  }
+
+  updateBook(book: BookPresentation): void {
+    this.editABook = book;
+    this.stepper.selectedIndex = 3;
+  }
+
+  updateChapter(chapter: BookChapters): void {
+    this.editAChapter = chapter;
+    this.editAChapterBookSelected = this.mappedBook.get(chapter.bookId);
+    this.stepper.selectedIndex = 4;
   }
 
 }

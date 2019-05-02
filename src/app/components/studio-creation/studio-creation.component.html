@@ -25,6 +25,7 @@
             <th mat-header-cell *matHeaderCellDef> Actions</th>
             <td mat-cell *matCellDef="let element">
               <button (click)="deleteBookChapter(element)">Delete </button>
+              <button (click)="updateChapter(element)">Edit </button>
             </td>
           </ng-container>
 
@@ -57,6 +58,7 @@
               <button style="margin-top: 10px" (click)="gotoCreationChapter(book)">Add Chapter </button>
               <button style="margin-top: 10px" (click)="getChapters(book)">See List chapters </button>
               <button style="margin-top: 10px" (click)="deleteBook(book)">Delete </button>
+              <button style="margin-top: 10px" (click)="updateBook(book)">Edit </button>
 
             </li>
             <li></li>
@@ -94,6 +96,31 @@
 
       <app-create-book-chapter [bookId]="activatedBook"
                                (terminateChapterCreation)="terminateChapterEdition($event)">
+
+      </app-create-book-chapter>
+    </ng-container>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Edit Book</ng-template>
+    <ng-container *ngIf="!editABook"> Click on a book button to edit book a form will be appeared here
+      <button (click)="returnToBookList()">Return book list</button>
+    </ng-container>
+    <ng-container *ngIf="editABook">
+      <app-create-book [bookExist]="editABook" (refreshEvent)="refresh()"></app-create-book>
+    </ng-container>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Edit A Chapter</ng-template>
+    <ng-container *ngIf="!editAChapter"> Click on a list chapter of book to edit a chapter a form will be appeared here
+      <button (click)="returnToBookList()">Return book list</button>
+    </ng-container>
+    <ng-container *ngIf="editAChapter">
+      <app-create-book-chapter [bookId]="editAChapterBookSelected"
+                               [chapterExist]="editAChapter"
+                               (terminateChapterEdition)="terminateChapterEditionUpdate($event)">
 
       </app-create-book-chapter>
     </ng-container>

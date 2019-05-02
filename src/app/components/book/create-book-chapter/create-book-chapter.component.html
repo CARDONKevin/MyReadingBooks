@@ -1,9 +1,10 @@
 <section>
 
-  <p>Register a chapter for '{{bookId.title}}' book</p>
+  <p *ngIf="!chapterExist">Register a chapter for '{{bookId.title}}' book</p>
+  <p *ngIf="chapterExist">Edit chapter : {{ chapterExist.title}} <br/> For book : {{bookId.title}}</p>
 
 
-  <form [formGroup]="chapterCreationForm" (ngSubmit)="prepareBookChapter()" novalidate>
+  <form *ngIf="!chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="prepareBookChapter()" novalidate>
 
     <div class="fam-user-create--form-body">
       <div class="fam-user-create--form-item">
@@ -27,5 +28,31 @@
     </div>
 
     <button mat-button type="submit">Create chapter</button>
+  </form>
+
+  <form *ngIf="chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="editBookChapterSave()" novalidate>
+
+    <div class="fam-user-create--form-body">
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <input matInput formControlName="title" placeholder="title" type="text" required />
+        </mat-form-field>
+      </div>
+
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <input matInput formControlName="picture" placeholder="URL of your picture" type="url" required />
+        </mat-form-field>
+      </div>
+
+
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <textarea matInput formControlName="content" placeholder="content" type="text" required></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-button type="submit">Edit chapter</button>
   </form>
 </section>
