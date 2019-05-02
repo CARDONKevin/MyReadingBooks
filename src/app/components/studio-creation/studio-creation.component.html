@@ -10,14 +10,22 @@
 
           <!-- Symbol Column -->
           <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Title </th>
-            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            <th mat-header-cell *matHeaderCellDef> Title</th>
+            <td mat-cell *matCellDef="let element"> {{element.title}}</td>
           </ng-container>
 
           <!-- Symbol Column -->
           <ng-container matColumnDef="creationDate">
-            <th mat-header-cell *matHeaderCellDef> Created </th>
-            <td mat-cell *matCellDef="let element"> {{element.creationDate }} </td>
+            <th mat-header-cell *matHeaderCellDef> Created</th>
+            <td mat-cell *matCellDef="let element"> {{element.creationDate }}</td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions</th>
+            <td mat-cell *matCellDef="let element">
+              <button (click)="deleteBookChapter(element)">Delete </button>
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -48,6 +56,7 @@
               <button class="btn" (click)="gotoBook(book)">Consulter </button>
               <button style="margin-top: 10px" (click)="gotoCreationChapter(book)">Add Chapter </button>
               <button style="margin-top: 10px" (click)="getChapters(book)">See List chapters </button>
+              <button style="margin-top: 10px" (click)="deleteBook(book)">Delete </button>
 
             </li>
             <li></li>

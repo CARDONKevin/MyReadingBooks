@@ -21,10 +21,10 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
   isCreatedChapter = false;
   visionChapters = false;
   allChaptersOfBook: BookChapters[];
+  mappedBook = new Map<number, BookPresentation>();
   private ngUnsubscribe = new Subject<void>();
 
-  displayedColumns: string[] = ['title', 'creationDate'];
-
+  displayedColumns: string[] = ['title', 'creationDate', 'actions'];
 
 
   @ViewChild('stepper') stepper;
@@ -56,6 +56,8 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
         this.allBookUser = apiResponse;
+        this.mappedBook.clear();
+        this.allBookUser.forEach(element => this.mappedBook.set(element.id, element));
       });
   }
 
@@ -98,6 +100,24 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
 
   gotoBook(book: any): void {
     this.router.navigate([`book/` + book.id]);
+  }
+
+  deleteBook(book: BookPresentation): void {
+    if (window.confirm(' Êtes-vous certain de vouloir supprimer le livre:  ' + book.title)) {
+      this.bookService.deleteBook(book.id).pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(apiResponse => {
+          this.getAllBooksOfUser();
+        });
+    }
+  }
+
+  deleteBookChapter(chapter: BookChapters): void {
+    if (window.confirm(' Êtes-vous certain de vouloir supprimer le chapitre:  ' + chapter.title)) {
+      this.bookService.deleteChapterBook(chapter.id).pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(apiResponse => {
+          this.getChapters(this.mappedBook.get(chapter.bookId));
+        });
+    }
   }
 
 }
