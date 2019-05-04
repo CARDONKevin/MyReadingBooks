@@ -20,11 +20,14 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
   activatedBook: BookPresentation;
   isCreatedChapter = false;
   visionChapters = false;
+  editABook: BookPresentation;
+  editAChapter: BookChapters;
+  editAChapterBookSelected: BookPresentation;
   allChaptersOfBook: BookChapters[];
+  mappedBook = new Map<number, BookPresentation>();
   private ngUnsubscribe = new Subject<void>();
 
-  displayedColumns: string[] = ['title', 'creationDate'];
-
+  displayedColumns: string[] = ['title', 'creationDate', 'actions'];
 
 
   @ViewChild('stepper') stepper;
@@ -47,7 +50,7 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
   }
 
   refresh(): void {
-    this.stepper.selectedIndex = this.stepper.selectedIndex - 1;
+    this.stepper.selectedIndex = 0;
     this.getAllBooksOfUser();
   }
 
@@ -56,6 +59,8 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
         this.allBookUser = apiResponse;
+        this.mappedBook.clear();
+        this.allBookUser.forEach(element => this.mappedBook.set(element.id, element));
       });
   }
 
@@ -79,12 +84,17 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
   }
 
   terminateChapterEdition(evt: any): void {
-    this.stepper.selectedIndex = this.stepper.selectedIndex - 2;
+    this.stepper.selectedIndex = 0;
     this.activatedBook = null;
     of().pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
         this.isCreatedChapter = false;
       });
+    this.getChapters(evt);
+  }
+
+  terminateChapterEditionUpdate(evt: any): void {
+    this.stepper.selectedIndex = 0;
     this.getChapters(evt);
   }
 
@@ -98,6 +108,35 @@ export class StudioCreationComponent implements OnInit, OnDestroy {
 
   gotoBook(book: any): void {
     this.router.navigate([`book/` + book.id]);
+  }
+
+  deleteBook(book: BookPresentation): void {
+    if (window.confirm(' Êtes-vous certain de vouloir supprimer le livre:  ' + book.title)) {
+      this.bookService.deleteBook(book.id).pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(apiResponse => {
+          this.getAllBooksOfUser();
+        });
+    }
+  }
+
+  deleteBookChapter(chapter: BookChapters): void {
+    if (window.confirm(' Êtes-vous certain de vouloir supprimer le chapitre:  ' + chapter.title)) {
+      this.bookService.deleteChapterBook(chapter.id).pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(apiResponse => {
+          this.getChapters(this.mappedBook.get(chapter.bookId));
+        });
+    }
+  }
+
+  updateBook(book: BookPresentation): void {
+    this.editABook = book;
+    this.stepper.selectedIndex = 3;
+  }
+
+  updateChapter(chapter: BookChapters): void {
+    this.editAChapter = chapter;
+    this.editAChapterBookSelected = this.mappedBook.get(chapter.bookId);
+    this.stepper.selectedIndex = 4;
   }
 
 }
