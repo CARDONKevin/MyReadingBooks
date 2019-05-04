@@ -7,7 +7,13 @@
 
     <ng-container *ngFor="let chapter of chapters">
       <div (click)="definitionOfWordSelected()">
-        <p> titre du chapitre : {{chapter.title}}  </p>
+        <p> titre du chapitre : {{chapter.title}}</p>
+        <audio
+          controls
+          src="https://api.voicerss.org/?key=c969182c5ca64c46adc8ac2b881bfe52&hl=fr-fr&src={{chapter.content}}">
+          Your browser does not support the
+          <code>audio</code> element.
+        </audio>
         <p> contenu : <br/>{{chapter.content}}  </p>
       </div>
     </ng-container>
