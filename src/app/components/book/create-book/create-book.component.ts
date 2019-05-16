@@ -6,11 +6,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BookService} from '../../../services/book.service';
 import {takeUntil} from 'rxjs/operators';
 import {BookPresentation} from '../../../models/book/BookPresentation';
+import {resultList, RxSpeechRecognitionService} from '@kamiazya/ngx-speech-recognition';
 
 @Component({
   selector: 'app-create-book',
   templateUrl: './create-book.component.html',
-  styleUrls: ['./create-book.component.scss']
+  styleUrls: ['./create-book.component.scss'],
+  providers: [
+    RxSpeechRecognitionService,
+  ],
 })
 export class CreateBookComponent implements OnInit, OnDestroy {
 
@@ -18,6 +22,7 @@ export class CreateBookComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
   book: any;
   user: SocialUser;
+  title = '';
 
   @Input() bookExist?: BookPresentation;
 
@@ -25,7 +30,8 @@ export class CreateBookComponent implements OnInit, OnDestroy {
   readonly refreshEvent = new EventEmitter<void>();
 
 
-  constructor(private readonly fb: FormBuilder, private authService: AuthService,
+  constructor(public service: RxSpeechRecognitionService,
+              private readonly fb: FormBuilder, private authService: AuthService,
               private route: ActivatedRoute, private router: Router, private bookService: BookService) {
   }
 
@@ -34,17 +40,19 @@ export class CreateBookComponent implements OnInit, OnDestroy {
       this.user = user;
     });
     const controlsConfig = !this.bookExist ? {
-      title: ['', [Validators.required]],
-      categorie: ['', [Validators.required]],
-      picture: ['', [Validators.required]],
-    }
-    :
+        title: ['', [Validators.required]],
+        categorie: ['', [Validators.required]],
+        picture: ['', [Validators.required]],
+      }
+      :
       {
         title: [this.bookExist.title, [Validators.required]],
         categorie: [this.bookExist.categorie, [Validators.required]],
         picture: [this.bookExist.picture, [Validators.required]],
       }
     ;
+
+    this.title = this.bookExist ? this.bookExist.title : '';
 
     this.userCreationForm = this.fb.group(controlsConfig);
   }
@@ -91,5 +99,14 @@ export class CreateBookComponent implements OnInit, OnDestroy {
 
   refreshParent(): void {
     this.refreshEvent.emit();
+  }
+
+  listenTitle() {
+    this.service
+      .listen()
+      .pipe(resultList)
+      .subscribe((list: SpeechRecognitionResultList) => {
+        this.title = list.item(0).item(0).transcript;
+      });
   }
 }
