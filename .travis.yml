@@ -8,6 +8,7 @@ branches:
   - dev
 before_script:
 - npm install -g @angular/cli
+- npm i @kamiazya/ngx-speech-recognition
 - npm install
 script:
 - ng lint
