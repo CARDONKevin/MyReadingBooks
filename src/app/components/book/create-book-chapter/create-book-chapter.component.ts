@@ -7,17 +7,27 @@ import {BookService} from '../../../services/book.service';
 import {Subject} from 'rxjs';
 import {BookPresentation} from '../../../models/book/BookPresentation';
 import {BookChapters} from '../../../models/book/BookChapters';
+import {
+  RxSpeechRecognitionService,
+  resultList,
+} from '@kamiazya/ngx-speech-recognition';
 
 @Component({
   selector: 'app-create-book-chapter',
   templateUrl: './create-book-chapter.component.html',
-  styleUrls: ['./create-book-chapter.component.scss']
+  styleUrls: ['./create-book-chapter.component.scss'],
+  providers: [
+    RxSpeechRecognitionService,
+  ],
 })
 export class CreateBookChapterComponent implements OnInit, OnDestroy {
 
   chapterCreationForm: FormGroup;
   chapter: any;
   private ngUnsubscribe = new Subject<void>();
+  message = '';
+  title = '';
+  completeMessage = '';
 
   @Input() bookId: BookPresentation;
 
@@ -29,7 +39,8 @@ export class CreateBookChapterComponent implements OnInit, OnDestroy {
   @Output()
   readonly terminateChapterEdition = new EventEmitter<any>();
 
-  constructor(private readonly fb: FormBuilder, private authService: AuthService,
+  constructor(public service: RxSpeechRecognitionService,
+              private readonly fb: FormBuilder, private authService: AuthService,
               private route: ActivatedRoute, private router: Router, private bookService: BookService) {
   }
 
@@ -46,6 +57,8 @@ export class CreateBookChapterComponent implements OnInit, OnDestroy {
         content: [this.chapterExist.content, [Validators.required]],
       }
     ;
+    this.title = this.chapterExist ? this.chapterExist.title : '';
+    this.completeMessage = this.chapterExist ? this.chapterExist.content : '';
 
     this.chapterCreationForm = this.fb.group(controlsConfig);
   }
@@ -88,6 +101,25 @@ export class CreateBookChapterComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
         this.terminateChapterEdition.emit(this.bookId);
+      });
+  }
+
+  listen() {
+    this.service
+      .listen()
+      .pipe(resultList)
+      .subscribe((list: SpeechRecognitionResultList) => {
+        this.message = list.item(0).item(0).transcript;
+        this.completeMessage = this.completeMessage + ' ' +  (' ' + this.message).slice(1);
+      });
+  }
+
+  listenTitle() {
+    this.service
+      .listen()
+      .pipe(resultList)
+      .subscribe((list: SpeechRecognitionResultList) => {
+        this.title = list.item(0).item(0).transcript;
       });
   }
 }
