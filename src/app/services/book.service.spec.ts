@@ -25,6 +25,8 @@ const book = {
   categorie: 'categ'
 };
 
+const empty = '';
+
 describe('BookService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
@@ -109,6 +111,55 @@ describe('BookService', () => {
         expect(response[0].creationDate).toEqual(chapter.creationDate);
         expect(response[0].picture).toEqual(chapter.picture);
 
+      });
+    }));
+
+  it('should update one book', inject([BookService, HttpClient],
+    (service: BookService, http: HttpClient) => {
+      spyOn(http, 'patch').and.returnValue(of(book));
+      service.editBook(book, 1).subscribe(response => {
+        expect(response.author).toEqual(book.author);
+        expect(response.authorMail).toEqual(book.authorMail);
+        expect(response.title).toEqual(book.title);
+        expect(response.id).toEqual(book.id);
+        expect(response.picture).toEqual(book.picture);
+        expect(response.categorie).toEqual(book.categorie);
+        expect(response.creationDate).toEqual(book.creationDate);
+
+      });
+    }));
+
+  it('should post one chapter', inject([BookService, HttpClient],
+    (service: BookService, http: HttpClient) => {
+      spyOn(http, 'post').and.returnValue(of(chapter));
+      service.postChapter(chapter).subscribe(response => {
+        expect(response.title).toEqual(chapter.title);
+
+      });
+    }));
+
+  it('should update one chapter', inject([BookService, HttpClient],
+    (service: BookService, http: HttpClient) => {
+      spyOn(http, 'post').and.returnValue(of(chapter));
+      service.editBookChapter(chapter, 1).subscribe(response => {
+        expect(response.title).toEqual(chapter.title);
+
+      });
+    }));
+
+  it('should delete one chapter', inject([BookService, HttpClient],
+    (service: BookService, http: HttpClient) => {
+      spyOn(http, 'delete').and.returnValue(of(empty));
+      service.deleteChapterBook(chapter.id).subscribe(response => {
+        expect(response).toEqual(empty);
+      });
+    }));
+
+  it('should delete one book', inject([BookService, HttpClient],
+    (service: BookService, http: HttpClient) => {
+      spyOn(http, 'delete').and.returnValue(of(empty));
+      service.deleteBook(book.id).subscribe(response => {
+        expect(response).toEqual(empty);
       });
     }));
 });

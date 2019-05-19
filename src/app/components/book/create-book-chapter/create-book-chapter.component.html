@@ -1,14 +1,17 @@
 <section>
+  <p *ngIf="!chapterExist">Register a chapter for '{{bookId.title}}' book</p>
+  <p *ngIf="chapterExist">Edit chapter : {{ chapterExist.title}} <br/> For book : {{bookId.title}}</p>
 
-  <p>Register a chapter for '{{bookId.title}}' book</p>
 
-
-  <form [formGroup]="chapterCreationForm" (ngSubmit)="prepareBookChapter()" novalidate>
+  <form *ngIf="!chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="prepareBookChapter()" novalidate>
 
     <div class="fam-user-create--form-body">
       <div class="fam-user-create--form-item">
         <mat-form-field class="fam-user-create--form-field">
-          <input matInput formControlName="title" placeholder="title" type="text" required />
+          <input [(ngModel)]="title" matInput formControlName="title" placeholder="title" type="text" required />
+          <input type="button"
+                 [disabled]="service.started$ | async"
+                 (click)="listenTitle()" value="listenTitle" />
         </mat-form-field>
       </div>
 
@@ -21,11 +24,47 @@
 
       <div class="fam-user-create--form-item">
         <mat-form-field class="fam-user-create--form-field">
-          <textarea matInput formControlName="content" placeholder="content" type="text" required></textarea>
+          <textarea [(ngModel)]="completeMessage" matInput formControlName="content"
+                    placeholder="content" type="text" required></textarea>
+          <input type="button"
+            [disabled]="service.started$ | async"
+            (click)="listen()" value="listen" />
         </mat-form-field>
       </div>
     </div>
 
     <button mat-button type="submit">Create chapter</button>
+  </form>
+
+  <form *ngIf="chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="editBookChapterSave()" novalidate>
+
+    <div class="fam-user-create--form-body">
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <input [(ngModel)]="title" matInput formControlName="title" placeholder="title" type="text" required />
+          <input type="button"
+                 [disabled]="service.started$ | async"
+                 (click)="listenTitle()" value="listenTitle" />
+        </mat-form-field>
+      </div>
+
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <input matInput formControlName="picture" placeholder="URL of your picture" type="url" required />
+        </mat-form-field>
+      </div>
+
+
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <textarea [(ngModel)]="completeMessage"  matInput formControlName="content" placeholder="content" type="text" required></textarea>
+          <input type="button"
+                 [disabled]="service.started$ | async"
+                 (click)="listen()" value="listen" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-button type="submit">Edit chapter</button>
   </form>
 </section>

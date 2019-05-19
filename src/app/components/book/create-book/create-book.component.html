@@ -1,11 +1,14 @@
 <section>
 
-  <form [formGroup]="userCreationForm" (ngSubmit)="prepareBook()" novalidate>
+  <form *ngIf="!bookExist" [formGroup]="userCreationForm" (ngSubmit)="prepareBook()" novalidate>
 
     <div class="fam-user-create--form-body">
       <div class="fam-user-create--form-item">
         <mat-form-field class="fam-user-create--form-field">
-          <input matInput formControlName="title" placeholder="title" type="text" required />
+          <input [(ngModel)]="title" matInput formControlName="title" placeholder="title" type="text" required />
+          <input type="button"
+                 [disabled]="service.started$ | async"
+                 (click)="listenTitle()" value="listenTitle" />
         </mat-form-field>
       </div>
 
@@ -24,5 +27,34 @@
     </div>
 
     <button mat-button type="submit">Create book</button>
+  </form>
+
+  <form *ngIf="bookExist" [formGroup]="userCreationForm" (ngSubmit)="editBook()" novalidate>
+
+    <div class="fam-user-create--form-body">
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <input [(ngModel)]="title" matInput formControlName="title" placeholder="title" type="text" required />
+          <input type="button"
+                 [disabled]="service.started$ | async"
+                 (click)="listenTitle()" value="listenTitle" />
+        </mat-form-field>
+      </div>
+
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <input matInput formControlName="picture" placeholder="URL of your picture" type="url" required />
+        </mat-form-field>
+      </div>
+
+
+      <div class="fam-user-create--form-item">
+        <mat-form-field class="fam-user-create--form-field">
+          <input matInput formControlName="categorie" placeholder="categorie" type="text" required />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-button type="submit">Edit book</button>
   </form>
 </section>
