@@ -50,7 +50,7 @@ Vidéo 2 (Complément sur la consultation d'un manga omise dans la première vid
 | Mise à jour de livre                |            |
 | Affichage de la définition d'un mot |            |
 
-
+Vidéo 3 (Contenu du Sprint 3): https://drive.google.com/open?id=1fp1GmtcmK0B6yrCrbOtdttRdBCFbYFBX <br/>
 ***********************************
 ***Vendredi 21 Juin ( sur place )***
 ***********************************
