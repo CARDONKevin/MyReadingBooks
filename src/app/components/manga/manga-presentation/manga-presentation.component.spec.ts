@@ -97,26 +97,4 @@ describe('MangaPresentationComponent', () => {
       url: 'http://www.mangareader.net/joshiraku'
     };
   });
-
-  it('ngOnInit', () => {
-    spyOn(mangaService, 'getMangaInformation').and.returnValue(of(mockedInformationManga));
-
-    component.ngOnInit();
-    expect(component.mangaInfo.chapters_len).toEqual(mockedInformationManga.chapters_len);
-    expect(component.mangaInfo.chapters).toEqual(mockedInformationManga.chapters);
-    expect(component.mangaInfo.title).toEqual(mockedInformationManga.title);
-    expect(component.mangaInfo.released).toEqual(mockedInformationManga.released);
-    expect(component.mangaInfo.last_chapter_date).toEqual(mockedInformationManga.last_chapter_date);
-    expect(component.mangaInfo.language).toEqual(mockedInformationManga.language);
-    expect(component.mangaInfo.imageURL).toEqual(mockedInformationManga.imageURL);
-    expect(component.mangaInfo.image).toEqual(mockedInformationManga.image);
-    expect(component.mangaInfo.description).toEqual(mockedInformationManga.description);
-    expect(component.mangaInfo.categories).toEqual(mockedInformationManga.categories);
-    expect(component.mangaInfo.artist).toEqual(mockedInformationManga.artist);
-    expect(component.mangaInfo.author).toEqual(mockedInformationManga.author);
-    expect(component.mangaInfo.created).toEqual(mockedInformationManga.created);
-
-    expect(mangaService.getMangaInformation).toHaveBeenCalled();
-
-  });
 });

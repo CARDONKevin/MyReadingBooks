@@ -33,3 +33,23 @@
     </ng-container>
   </div>
 </div>
+
+<form [formGroup]="commentForm" (ngSubmit)="prepareCommentNote()" novalidate>
+
+  <div class="fam-user-create--form-body">
+    <div class="fam-user-create--form-item">
+      <mat-form-field class="fam-user-create--form-field">
+        <textarea matInput formControlName="comment" placeholder="comment" type="text" required ></textarea>
+      </mat-form-field>
+    </div>
+
+
+    <div class="fam-user-create--form-item">
+      <mat-form-field class="fam-user-create--form-field">
+        <input matInput formControlName="note" placeholder="note" type="number" step="1" min="0" max="20" required />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-button type="submit">Send Opinion</button>
+</form>

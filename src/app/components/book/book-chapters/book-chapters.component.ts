@@ -6,6 +6,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BookChapters} from '../../../models/book/BookChapters';
 import {takeUntil} from 'rxjs/operators';
 import {DefinitionOfWordService} from '../../../services/definition-of-word.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CommentNote} from '../../../models/notation/CommentNote';
+import {AuthService, SocialUser} from 'angularx-social-login';
+import {CommentService} from '../../../services/comment.service';
 
 @Component({
   selector: 'app-book-chapters',
@@ -15,18 +19,32 @@ import {DefinitionOfWordService} from '../../../services/definition-of-word.serv
 export class BookChaptersComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe = new Subject<void>();
+  commentForm: FormGroup;
+  comment: CommentNote;
   book: BookPresentation;
   chapters: BookChapters[];
   bookId: string;
   definitionWordApi: any;
+  user: SocialUser;
 
   constructor(private bookService: BookService, private route: ActivatedRoute,
-              private router: Router, private definitionService: DefinitionOfWordService) {
+              private router: Router, private definitionService: DefinitionOfWordService,
+              private readonly fb: FormBuilder, private authService: AuthService,
+              private commentNoteService: CommentService) {
     this.bookId = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+    });
     this.chapters = [];
+    const controlsConfig = {
+        comment: ['', [Validators.required]],
+        note: ['', [Validators.required]],
+      };
+
+    this.commentForm = this.fb.group(controlsConfig);
     this.seeBook();
     this.seeChapters();
   }
@@ -69,6 +87,32 @@ export class BookChaptersComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
         this.definitionWordApi = Object.values(apiResponse.query.pages)[0];
+      });
+  }
+
+  prepareCommentNote(): void {
+    const formValues = this.commentForm.getRawValue();
+
+    if (formValues.note > 20) {
+      formValues.note = 20;
+    }
+
+    if (formValues.note < 0) {
+      formValues.note = 0;
+    }
+
+    this.comment = {
+      comment: formValues.comment,
+      notation: formValues.note,
+      typeOfBook: 'book',
+      idBook: this.book.id.toString(),
+      authorMail: this.user.email,
+      authorName: this.user.name,
+    } as CommentNote;
+    this.commentNoteService.postComment(this.comment)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(apiResponse => {
+        // action
       });
   }
 
