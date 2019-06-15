@@ -8,6 +8,7 @@ import {BookListingComponent} from './components/book/book-listing/book-listing.
 import {BookChaptersComponent} from './components/book/book-chapters/book-chapters.component';
 import {StudioCreationComponent} from './components/studio-creation/studio-creation.component';
 import {AuthenticationGuard} from './guards/authentication.guard';
+import {BestTopComponent} from './components/best-top/best-top.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'book/:id', canActivate: [ AuthenticationGuard ], component: BookChaptersComponent },
   { path: 'books', canActivate: [ AuthenticationGuard ], component: BookListingComponent },
   { path: 'chapter/:id', canActivate: [ AuthenticationGuard ], component: ReadChapterComponent },
-  { path: 'creation-studio', canActivate: [ AuthenticationGuard ], component: StudioCreationComponent }
+  { path: 'creation-studio', canActivate: [ AuthenticationGuard ], component: StudioCreationComponent },
+  { path: 'top', canActivate: [ AuthenticationGuard ], component: BestTopComponent }
 
 ];
 

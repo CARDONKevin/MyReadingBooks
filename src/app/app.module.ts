@@ -27,6 +27,7 @@ import { BookChaptersComponent } from './components/book/book-chapters/book-chap
 import { CreateBookComponent } from './components/book/create-book/create-book.component';
 import { CreateBookChapterComponent } from './components/book/create-book-chapter/create-book-chapter.component';
 import { StudioCreationComponent } from './components/studio-creation/studio-creation.component';
+import { BestTopComponent } from './components/best-top/best-top.component';
 
 
 const config = new AuthServiceConfig([
@@ -52,7 +53,8 @@ export function provideConfig() {
     BookChaptersComponent,
     CreateBookComponent,
     CreateBookChapterComponent,
-    StudioCreationComponent
+    StudioCreationComponent,
+    BestTopComponent
   ],
   imports: [
     BrowserModule,

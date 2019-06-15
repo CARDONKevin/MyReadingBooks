@@ -124,7 +124,6 @@ export class BookChaptersComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
         this.allComment = apiResponse;
-        this.allComment.forEach(item => console.log(item));
       });
   }
 
