@@ -26,6 +26,8 @@ export class BookChaptersComponent implements OnInit, OnDestroy {
   bookId: string;
   definitionWordApi: any;
   user: SocialUser;
+  allComment: CommentNote[];
+  displayedColumns: string[] = ['authorName', 'notation', 'comment'];
 
   constructor(private bookService: BookService, private route: ActivatedRoute,
               private router: Router, private definitionService: DefinitionOfWordService,
@@ -47,6 +49,7 @@ export class BookChaptersComponent implements OnInit, OnDestroy {
     this.commentForm = this.fb.group(controlsConfig);
     this.seeBook();
     this.seeChapters();
+    this.getComments();
   }
 
   ngOnDestroy() {
@@ -112,7 +115,16 @@ export class BookChaptersComponent implements OnInit, OnDestroy {
     this.commentNoteService.postComment(this.comment)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
-        // action
+        this.getComments();
+      });
+  }
+
+  getComments(): void {
+    this.commentNoteService.getCommentOfTypeOfMangaIdOrBookId('book', this.bookId)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(apiResponse => {
+        this.allComment = apiResponse;
+        this.allComment.forEach(item => console.log(item));
       });
   }
 

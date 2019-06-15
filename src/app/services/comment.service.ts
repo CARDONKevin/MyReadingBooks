@@ -25,16 +25,16 @@ export class CommentService {
     return this.http.post<any>(this.BASE_URL, commentNote, this.jsonApplicationHeader);
   }
 
-  public getCommentOfType(type: string): Observable<CommentNote> {
-    return this.http.get<any>(this.BASE_URL + type);
+  public getCommentOfType(type: string): Observable<CommentNote[]> {
+    return this.http.get<any>(this.BASE_URL + type, this.jsonApplicationHeader);
   }
 
-  public getCommentOfTypeOfMangaIdOrBookId(type: string, id: string): Observable<CommentNote> {
-    return this.http.get<any>(this.BASE_URL + type + '/' + id);
+  public getCommentOfTypeOfMangaIdOrBookId(type: string, id: string): Observable<CommentNote[]> {
+    return this.http.get<any>(this.BASE_URL + type + '/' + id, this.jsonApplicationHeader);
   }
 
   public getMyCommentOfTypeOfMangaIdOrBookId(type: string, id: string, name: string): Observable<CommentNote> {
-    return this.http.get<any>(this.BASE_URL + type + '/' + id + '/' + name);
+    return this.http.get<any>(this.BASE_URL + type + '/' + id + '/' + name, this.jsonApplicationHeader);
   }
 
   public getTokenValid(): string {

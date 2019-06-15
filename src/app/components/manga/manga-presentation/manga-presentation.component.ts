@@ -26,6 +26,9 @@ export class MangaPresentationComponent implements OnInit, OnDestroy {
   found = false;
   user: SocialUser;
   commentForm: FormGroup;
+  allComment: CommentNote[];
+  displayedColumns: string[] = ['authorName', 'notation', 'comment'];
+
 
   constructor(private mangaService: MangaService, private route: ActivatedRoute,
               private router: Router, private location: Location,
@@ -45,6 +48,7 @@ export class MangaPresentationComponent implements OnInit, OnDestroy {
 
     this.commentForm = this.fb.group(controlsConfig);
     this.seeInformationOfManga(this.mangaId);
+    this.getComments();
   }
 
   ngOnDestroy() {
@@ -88,7 +92,16 @@ export class MangaPresentationComponent implements OnInit, OnDestroy {
     this.commentNoteService.postComment(this.comment)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(apiResponse => {
-        // action
+        this.getComments();
+      });
+  }
+
+  getComments(): void {
+    this.commentNoteService.getCommentOfTypeOfMangaIdOrBookId('manga', this.mangaId)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(apiResponse => {
+        this.allComment = apiResponse;
+        this.allComment.forEach(item => console.log(item));
       });
   }
 
