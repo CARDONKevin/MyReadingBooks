@@ -61,14 +61,4 @@ describe('BookChaptersComponent', () => {
       categorie: 'categ'
     };
   });
-
-  it('ngOnInit',  () => {
-    spyOn(bookService, 'getBookChapter').and.returnValue(of(chapters));
-    spyOn(bookService, 'getBook').and.returnValue(of(book));
-
-    component.ngOnInit();
-    expect(component.chapters).toEqual(chapters);
-    expect(component.book).toEqual(book);
-
-  });
 });
