@@ -1,0 +1,104 @@
+nav ul{
+  /* flexbox magie */
+  display: flex;
+  /*justify-content: space-between;*/
+  justify-content: space-around;
+  /*flex-direction: row-reverse;*/
+  /*flex-direction: column;*/
+  /*flex-wrap: wrap;*/
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.all{
+  width: 80%;
+  margin: auto;
+  background-color: rgba(245,245,245, 0.8);
+}
+.titel{
+  background-color: rgba(245,245,245, 0.8);
+  padding-top: 1px;
+}
+.smalltitel{
+  color: rgb(256,256,256);
+  margin-left: 2%;
+  top: 3%;
+}
+.boxes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.box {
+  background-color: rgb(256,256,256);
+  border: 1px solid #CCC;
+  padding: 10px;
+  margin: 0 5px 10px 5px;
+  flex:1;
+}
+.box1:hover{
+  background-color: rgba(245,245,245, 0.8);
+  .bash{
+    color: #000000;
+  }
+}
+.box2:hover{
+  background-color: rgba(245,245,245, 0.8);
+  .bash{
+    color: #000000;
+  }
+}
+.banner{
+  width: 3%;
+  float: left;
+  z-index: 30;
+  left: 38%;
+  position: relative;
+}
+.banner1{
+  width: 3%;
+  float: left;
+  z-index: 30;
+  left: 62%;
+  position: relative;
+}
+img{
+  max-width: 100%;
+}
+.bash{
+  color: rgb(255,256,256);
+}
+a{
+  font-family: 'Rock salt', cursive;
+}
+h1 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 3em;
+  font-weight: 700;
+  margin-bottom: .5em;
+  text-align: center;
+}
+h2 {
+  font-family: 'Coiny', cursive;
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-top: 1em;
+}
+h3 {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-top: 1em;
+}
+p {
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  margin-top: 1em;
+  line-height: 1.8em;
+}
+footer{
+  text-align: center;
+  padding-bottom: 2px;
+  font-family: 'Luckiest Guy', cursive;
+}

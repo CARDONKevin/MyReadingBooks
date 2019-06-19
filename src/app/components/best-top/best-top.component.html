@@ -1,2 +1,27 @@
-<span *ngIf="bestBook">{{averageBook}}  ---  {{bestBook.title}}</span><br/>
-<span *ngIf=" bestManga">{{averageManga}} ---  {{bestManga.title}} </span>
+<div class="all" *ngIf="bestManga && bestBook">
+  <div class="titel">
+    <h1>TOP 1 Manga and Book</h1>
+  </div>
+  <div class="boxes">
+      <div class="box box1">
+        <p class="bash">BEST MANGA</p>
+        <h3>Title : {{bestManga.title}}</h3>
+        <img src="{{'https://cdn.mangaeden.com/mangasimg/' + bestManga.image}}"/>
+        <h3>Author: {{bestManga.author}}</h3>
+        <p>Resume: {{bestManga.description}}</p>
+        <br/>
+        <button (click)="gotoManga()">Voir</button>
+      </div>
+      <div class="box box2">
+        <p class="bash">BEST BOOK</p>
+        <h3>Title: {{bestBook.title}}</h3>
+        <img src="{{bestBook.picture}}"/>
+        <h3>Author: {{bestBook.author}}</h3>
+        <br/>
+        <button (click)="gotoBook()">Voir</button>
+      </div>
+  </div>
+  <footer>
+    <br>Classment recently updated<br>
+  </footer>
+</div>

@@ -8,6 +8,7 @@ import {Subject} from 'rxjs';
 import {BookPresentation} from '../../models/book/BookPresentation';
 import {MangaMapper} from '../../mappers/manga-mapper';
 import {MangaInformation} from '../../models/mangas/MangaInformation';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-best-top',
@@ -36,7 +37,7 @@ export class BestTopComponent implements OnInit {
 
   constructor(private commentNoteService: CommentService,
               private bookService: BookService,
-              private mangaService: MangaService
+              private mangaService: MangaService, private router: Router
               ) { }
   ngOnInit() {
     this.averageManga = 0;
@@ -151,5 +152,13 @@ export class BestTopComponent implements OnInit {
       .subscribe(apiResponse => {
         this.bestBook = apiResponse;
       });
+  }
+
+  gotoManga(manga: any): void {
+    this.router.navigate([`manga/` + this.idBestManga]);
+  }
+
+  gotoBook(book: any): void {
+    this.router.navigate([`book/` + this.idBestBook]);
   }
 }

@@ -1,25 +1,25 @@
 <meta name="referrer" content="no-referrer"/>
 
-<div>
+<div class="order">
+  <h1>Trier par</h1><br/>
   <mat-radio-group (change)="onChange($event)">
-    <mat-radio-button value="none">Aucun</mat-radio-button>
-    <mat-radio-button value="date">Ancien vers Récent</mat-radio-button>
-    <mat-radio-button value="reversedDate">Récent vers Ancien</mat-radio-button>
-    <mat-radio-button value="alpha">De A à Z</mat-radio-button>
-    <mat-radio-button value="reversedAlpha">De Z à A </mat-radio-button>
+    <mat-radio-button class="espace" value="none">Aucun</mat-radio-button>
+    <mat-radio-button class="espace" value="date">Ancien vers Récent</mat-radio-button>
+    <mat-radio-button class="espace" value="reversedDate">Récent vers Ancien</mat-radio-button>
+    <mat-radio-button class="espace" value="alpha">De A à Z</mat-radio-button>
+    <mat-radio-button class="espace" value="reversedAlpha">De Z à A </mat-radio-button>
   </mat-radio-group>
-</div>
-
-<div *ngIf="isDisplayedCategories">
-<mat-form-field>
-  <mat-label>Select an option</mat-label>
-  <mat-select (selectionChange)="onSelectedCategorie($event)">
-    <mat-option value=' Aucune'> Aucune</mat-option>
-    <ng-container *ngFor="let categ of allCategorie">
-      <mat-option value="{{categ.value}}">{{categ.viewValue}}</mat-option>
-    </ng-container>
-  </mat-select>
-</mat-form-field>
+  <div class="espace" *ngIf="isDisplayedCategories">
+    <mat-form-field>
+      <mat-label>Select an categorie</mat-label>
+      <mat-select (selectionChange)="onSelectedCategorie($event)">
+        <mat-option value=' Aucune'> Aucune</mat-option>
+        <ng-container *ngFor="let categ of allCategorie">
+          <mat-option value="{{categ.value}}">{{categ.viewValue}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+  </div>
 </div>
 
 <span class="component">
@@ -58,7 +58,7 @@
     </ul>
   </ng-container>
 </span>
-
+<br/>
 <div class="list" *ngIf="selectedCategorie === ' Aucune'">
   <ul>
     <li *ngFor="let item of collection | paginate: config"></li>

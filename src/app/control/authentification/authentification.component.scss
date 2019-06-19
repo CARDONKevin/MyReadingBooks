@@ -1,9 +1,16 @@
+.jumbotron{
+  background: url('src/app/ressources/background_librairy_2.JPG') no-repeat center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
 #login-box {
   position: relative;
   margin: 5% auto;
   width: 600px;
   height: 400px;
-  background: #FFF;
+  background: rgba(245, 245, 245, 0.4);
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }

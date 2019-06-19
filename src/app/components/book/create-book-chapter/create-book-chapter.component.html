@@ -1,9 +1,9 @@
 <section>
-  <p *ngIf="!chapterExist">Register a chapter for '{{bookId.title}}' book</p>
-  <p *ngIf="chapterExist">Edit chapter : {{ chapterExist.title}} <br/> For book : {{bookId.title}}</p>
+  <p class="myForm" *ngIf="!chapterExist">Register a chapter for '{{bookId.title}}' book</p>
+  <p class="myForm" *ngIf="chapterExist">Edit chapter : {{ chapterExist.title}} <br/> For book : {{bookId.title}}</p>
 
 
-  <form *ngIf="!chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="prepareBookChapter()" novalidate>
+  <form class="myForm" *ngIf="!chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="prepareBookChapter()" novalidate>
 
     <div class="fam-user-create--form-body">
       <div class="fam-user-create--form-item">
@@ -36,7 +36,7 @@
     <button mat-button type="submit">Create chapter</button>
   </form>
 
-  <form *ngIf="chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="editBookChapterSave()" novalidate>
+  <form class="myForm" *ngIf="chapterExist" [formGroup]="chapterCreationForm" (ngSubmit)="editBookChapterSave()" novalidate>
 
     <div class="fam-user-create--form-body">
       <div class="fam-user-create--form-item">
