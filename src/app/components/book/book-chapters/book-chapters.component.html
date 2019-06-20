@@ -1,25 +1,38 @@
 <div class="grid-container">
   <div class="grid-item">
 
-    <p *ngIf="book" (click)="definitionOfWordSelected()">
-      titre du livre : {{book.title}}  
-    </p>
-
-    <ng-container *ngFor="let chapter of chapters">
-      <div (click)="definitionOfWordSelected()">
-        <p> titre du chapitre : {{chapter.title}}</p>
-        <audio
-          controls
-          src="https://api.voicerss.org/?key=c969182c5ca64c46adc8ac2b881bfe52&hl=fr-fr&src={{chapter.content}}">
-          Your browser does not support the
-          <code>audio</code> element.
-        </audio>
-        <p> contenu : <br/>{{chapter.content}}  </p>
+    <ng-container *ngFor="let chapter of chapters.reverse()">
+      <div style="margin-bottom: 50px">
+        <div class='book'>
+          <div class='cover left'></div>
+          <div class='cover spine'></div>
+          <div class='cover right'></div>
+          <div class='page left'>
+            <h1>
+              <p *ngIf="book" (click)="definitionOfWordSelected()">
+                titre du livre : {{book.title}} <br/> ({{book.creationDate | date}})  
+              </p>
+            </h1>
+            <img style="width: 300px; height: 300px; margin-bottom: 10px" *ngIf="chapter.picture" src="{{chapter.picture}}"/>
+            <audio
+              controls
+              src="https://api.voicerss.org/?key=c969182c5ca64c46adc8ac2b881bfe52&hl=fr-fr&src={{chapter.content}}">
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio>
+          </div>
+          <div class='page right'>
+            <div (click)="definitionOfWordSelected()">
+              <p style="font-size: 15px"> titre du chapitre : {{chapter.title}} ({{chapter.creationDate | date}})</p>
+              <p style="font-size: 13px"> <br/>{{chapter.content}}  </p>
+            </div>
+          </div>
+        </div>
       </div>
     </ng-container>
   </div>
 
-  <div class="grid-item">
+  <div class="grid-item2">
     <p *ngIf="!definitionWordApi">Click on a word in book to know its definition /<br/>
       Clique sur un mot dans le livre pour connaître sa définition
     </p>

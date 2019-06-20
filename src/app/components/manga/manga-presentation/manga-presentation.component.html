@@ -32,11 +32,11 @@
 
   <br/>
   <div class="chapter-list">
-    <ng-container *ngFor="let chapter of mangaInfo.chapters">
+    <ng-container *ngFor="let chapter of mangaInfo.chapters.reverse()">
       <div class="chapter">
         <a routerLink="/chapter/{{chapter[3]}}">
           <div class="chapter-content">
-            <h1>Chapitre : {{ chapter[2] }}
+            <h1>Chapitre : {{ chapter[2] }} 
             </h1>
           </div>
         </a>
