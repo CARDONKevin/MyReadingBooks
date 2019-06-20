@@ -14,7 +14,13 @@ export class DefinitionOfWordService {
   readonly DEF_EN = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&origin=*&format=json&titles=';
 
   public getDefinitionWord(word: string): Observable<any> {
-    return this.http.get<any>(this.DEF_FR + word);
+    return this.http.get<any>(this.DEF_FR + word.replace('.', '')
+      .replace(',', '').replace('!', '')
+      .replace(';', '').replace(':', '')
+      .replace('?', '').replace('(', '')
+      .replace(')', '').replace('{', '')
+      .replace('}', '').replace('[', '')
+      .replace(']', ''));
   }
 
 }

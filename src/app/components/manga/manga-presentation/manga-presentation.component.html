@@ -1,55 +1,92 @@
 <ng-container *ngIf="found">
 
-  <p>
-    manga-presentation works! <br/>
-    {{mangaInfo.title}}<br/>
-    {{mangaInfo.chapters_len}}
+  <button (click)="goBack()">Retour</button>
 
-  </p>
-  <li *ngFor="let chapter of mangaInfo.chapters">
-    <a routerLink="/chapter/{{chapter[3]}}">{{ chapter[2] }} </a>
-  </li>
-</ng-container>
-
-<button (click)="goBack()">Retour</button>
-
-<form [formGroup]="commentForm" (ngSubmit)="prepareCommentNote()" novalidate>
-
-  <div class="fam-user-create--form-body">
-    <div class="fam-user-create--form-item">
-      <mat-form-field class="fam-user-create--form-field">
-        <textarea matInput formControlName="comment" placeholder="comment" type="text" required ></textarea>
-      </mat-form-field>
-    </div>
-
-
-    <div class="fam-user-create--form-item">
-      <mat-form-field class="fam-user-create--form-field">
-        <input matInput formControlName="note" placeholder="note" type="number" step="1" min="0" max="20" required />
-      </mat-form-field>
+  <div style="margin: 0 25%">
+    <div class='book'>
+      <div class='cover left'></div>
+      <div class='cover spine'></div>
+      <div class='cover right'></div>
+      <div class='page left'>
+        <h1>
+          {{mangaInfo.title}} - {{mangaInfo.author}}
+        </h1>
+        <img src="https://cdn.mangaeden.com/mangasimg/{{mangaInfo.image}}"/>
+      </div>
+      <div class='page right'>
+        <p>
+          Crée le : {{mangaInfo.created | date}}
+        <p>
+          <br/>
+        <p>
+          nombre de chapitre : {{mangaInfo.chapters_len}}
+        <p>
+          <br/>
+        <p>
+          Synopsis: <br/> <br/>
+          {{mangaInfo.description}}
+        <p>
+      </div>
     </div>
   </div>
 
-  <button mat-button type="submit">Send Opinion</button>
-</form>
+  <br/>
+  <div class="chapter-list">
+    <ng-container *ngFor="let chapter of mangaInfo.chapters.reverse()">
+      <div class="chapter">
+        <a routerLink="/chapter/{{chapter[3]}}">
+          <div class="chapter-content">
+            <h1>Chapitre : {{ chapter[2] }} 
+            </h1>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+  </div>
 
-<table *ngIf="allComment" mat-table [dataSource]="allComment" class="mat-elevation-z8">
-  <ng-container matColumnDef="authorName">
-    <th mat-header-cell *matHeaderCellDef> authorName </th>
-    <td mat-cell *matCellDef="let element"> {{element.authorName}} </td>
-  </ng-container>
+  <br/>
+  <br/>
+  <div class="myForm">
+    <h1>Mettre un commentaire</h1>
+    <br/>
+    <form [formGroup]="commentForm" (ngSubmit)="prepareCommentNote()" novalidate>
 
-  <ng-container matColumnDef="notation">
-    <th mat-header-cell *matHeaderCellDef> notation </th>
-    <td mat-cell *matCellDef="let element"> {{element.notation}} </td>
-  </ng-container>
+      <div class="fam-user-create--form-body">
+        <div class="fam-user-create--form-item">
+          <mat-form-field class="fam-user-create--form-field">
+            <textarea matInput formControlName="comment" placeholder="comment" type="text" required></textarea>
+          </mat-form-field>
+        </div>
 
-  <ng-container matColumnDef="comment">
-    <th mat-header-cell *matHeaderCellDef> comment </th>
-    <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
-  </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+        <div class="fam-user-create--form-item">
+          <mat-form-field class="fam-user-create--form-field">
+            <input matInput formControlName="note" placeholder="note" type="number" step="1" min="0" max="20" required/>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-button type="submit">Send Opinion</button>
+    </form>
+  </div>
+  <table *ngIf="allComment" mat-table [dataSource]="allComment" class="mat-elevation-z8">
+    <ng-container matColumnDef="authorName">
+      <th mat-header-cell *matHeaderCellDef> authorName</th>
+      <td mat-cell *matCellDef="let element"> {{element.authorName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="notation">
+      <th mat-header-cell *matHeaderCellDef> notation</th>
+      <td mat-cell *matCellDef="let element"> {{element.notation}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef> comment</th>
+      <td mat-cell *matCellDef="let element"> {{element.comment}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-container>
 

@@ -1,6 +1,6 @@
 <section>
 
-  <form *ngIf="!bookExist" [formGroup]="userCreationForm" (ngSubmit)="prepareBook()" novalidate>
+  <form class="myForm" *ngIf="!bookExist" [formGroup]="userCreationForm" (ngSubmit)="prepareBook()" novalidate>
 
     <div class="fam-user-create--form-body">
       <div class="fam-user-create--form-item">
@@ -29,7 +29,7 @@
     <button mat-button type="submit">Create book</button>
   </form>
 
-  <form *ngIf="bookExist" [formGroup]="userCreationForm" (ngSubmit)="editBook()" novalidate>
+  <form class="myForm" *ngIf="bookExist" [formGroup]="userCreationForm" (ngSubmit)="editBook()" novalidate>
 
     <div class="fam-user-create--form-body">
       <div class="fam-user-create--form-item">
