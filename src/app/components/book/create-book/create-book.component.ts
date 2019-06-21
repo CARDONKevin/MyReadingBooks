@@ -8,6 +8,11 @@ import {takeUntil} from 'rxjs/operators';
 import {BookPresentation} from '../../../models/book/BookPresentation';
 import {resultList, RxSpeechRecognitionService} from '@kamiazya/ngx-speech-recognition';
 
+export interface Categorie {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-create-book',
   templateUrl: './create-book.component.html',
@@ -23,6 +28,11 @@ export class CreateBookComponent implements OnInit, OnDestroy {
   book: any;
   user: SocialUser;
   title = '';
+  categories: Array<Categorie> = [
+    {value: 'Fantaisie', viewValue: 'Fantaisie'},
+    {value: 'Sci-fi', viewValue: 'Sci-fi'},
+    {value: 'Horreur', viewValue: 'Horreur'}
+  ];
 
   @Input() bookExist?: BookPresentation;
 
