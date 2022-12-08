@@ -29,7 +29,7 @@
     "@kamiazya/ngx-speech-recognition": "^0.3.2",
     "angularx-social-login": "^1.2.6",
     "core-js": "^2.5.4",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "jwt-decode": "^2.2.0",
     "ngx-pagination": "^3.2.1",
     "path": "^0.12.7",
